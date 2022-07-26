@@ -1,7 +1,7 @@
 import sharp from "sharp";
 import { Request } from "express";
 
-export const resize = async (req: Request) => {
+export const resize = async (req: Request): Promise<string> => {
   const width: number = parseInt(req.query.width as string);
   const height: number = parseInt(req.query.height as string);
   
