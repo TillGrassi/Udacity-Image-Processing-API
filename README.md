@@ -5,7 +5,7 @@ This is an Image Processing API that can be used to resize images and serve them
 to install use npm install\
 to start: npm start\
 for testing: npm test\
-for the build: npm run build\
+for the build: npm run build
 
 place your images in the public folder and
 use the endpoint\
