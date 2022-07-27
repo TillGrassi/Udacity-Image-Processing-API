@@ -1,9 +1,9 @@
 import createError, { HttpError } from 'http-errors';
-import express, { json, Router, urlencoded } from 'express';
+import express, { json, urlencoded } from 'express';
 import { join } from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
 import indexRouter from './routes/index';
 

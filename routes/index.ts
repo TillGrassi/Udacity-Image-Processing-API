@@ -14,23 +14,21 @@ router.get('/image', async function (req: Request, res: Response) {
   const width = req.query.width;
   const height = req.query.height;
 
-  if(existsSync(path.join(__dirname,'..', 'public',`${img}${width}${height}.jpg`))) {
-    res.sendFile(`${img}${width}${height}.jpg`,{root: path.join(__dirname,'..', 'public')});
+  if (existsSync(path.join(__dirname, '..', 'public', `${img}${width}${height}.jpg`))) {
+    res.sendFile(`${img}${width}${height}.jpg`, { root: path.join(__dirname, '..', 'public') });
   } else {
-    try{
-      if(validateNum(req)) {
-        throw new Error('Error! Width or height parameter is not a Number.')
-      }
-      else if(validateImg(req)) {
-        throw new Error('Error! Image was not found in public directory.')
-      }
-      else { 
+    try {
+      if (validateNum(req)) {
+        throw new Error('Error! Width or height parameter is not a Number.');
+      } else if (validateImg(req)) {
+        throw new Error('Error! Image was not found in public directory.');
+      } else {
         await resize(req);
-        res.sendFile(`${img}${width}${height}.jpg`,{root: path.join(__dirname,'..', 'public')});
+        res.sendFile(`${img}${width}${height}.jpg`, { root: path.join(__dirname, '..', 'public') });
       }
-    } catch(err) {
+    } catch (err) {
       console.log(err);
-      res.send('Oops! Something went wrong. Please check your URL and try again.')
+      res.send('Oops! Something went wrong. Please check your URL and try again.');
     }
   }
 });

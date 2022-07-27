@@ -1,4 +1,4 @@
-import  app  from '../app';
+import app from '../app';
 import { resize } from '../utilities/utilities';
 import supertest from 'supertest';
 
@@ -17,10 +17,10 @@ describe('the resizing func works', () => {
       query: {
         img: 'test',
         width: '300',
-        height: '200'
-      }
-    }
+        height: '200',
+      },
+    };
     const response = await resize(req);
-    expect(response).toEqual('test300200.jpg')
-  })
-})
+    expect(response).toEqual('test300200.jpg');
+  });
+});
