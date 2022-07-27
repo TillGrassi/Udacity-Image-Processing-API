@@ -55,7 +55,7 @@ var resize = function (req) { return __awaiter(void 0, void 0, void 0, function 
                         .toFile("public/".concat(req.query.img).concat(req.query.width).concat(req.query.height, ".jpg"))];
             case 1:
                 _a.sent();
-                return [2 /*return*/, ("".concat(req.query.img).concat(req.query.width).concat(req.query.height, ".jpg"))];
+                return [2 /*return*/, "".concat(req.query.img).concat(req.query.width).concat(req.query.height, ".jpg")];
         }
     });
 }); };
@@ -63,6 +63,7 @@ exports.resize = resize;
 var validateNum = function (req) {
     var width = parseInt(req.query.width);
     var height = parseInt(req.query.height);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (isNaN(width) || isNaN(height)) {
         return true;
     }

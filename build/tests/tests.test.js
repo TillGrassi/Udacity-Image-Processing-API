@@ -67,8 +67,8 @@ describe('the resizing func works', function () {
                         query: {
                             img: 'test',
                             width: '300',
-                            height: '200'
-                        }
+                            height: '200',
+                        },
                     };
                     return [4 /*yield*/, (0, utilities_1.resize)(req)];
                 case 1:
