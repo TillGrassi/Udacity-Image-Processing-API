@@ -1,9 +1,9 @@
 import createError, { HttpError } from 'http-errors';
-import express, { json, urlencoded } from 'express';
+import express, { json, Router, urlencoded } from 'express';
 import { join } from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import indexRouter from './routes/index';
 
@@ -19,12 +19,12 @@ app.use(express.static(join(__dirname, 'public')));
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (req: Request, res: Response, next: NextFunction): void {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err: HttpError, req: Request, res: Response) {
+app.use(function (err: HttpError, req: Request, res: Response): void {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

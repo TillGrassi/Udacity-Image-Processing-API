@@ -39,8 +39,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resize = void 0;
+exports.validateImg = exports.validateNum = exports.resize = void 0;
 var sharp_1 = __importDefault(require("sharp"));
+var fs_1 = require("fs");
+var path_1 = __importDefault(require("path"));
 var resize = function (req) { return __awaiter(void 0, void 0, void 0, function () {
     var width, height;
     return __generator(this, function (_a) {
@@ -58,3 +60,24 @@ var resize = function (req) { return __awaiter(void 0, void 0, void 0, function 
     });
 }); };
 exports.resize = resize;
+var validateNum = function (req) {
+    var width = parseInt(req.query.width);
+    var height = parseInt(req.query.height);
+    if (isNaN(width) || isNaN(height)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+};
+exports.validateNum = validateNum;
+var validateImg = function (req) {
+    var img = req.query.img;
+    if ((0, fs_1.existsSync)(path_1.default.join(__dirname, '..', 'public', "".concat(img, ".jpg")))) {
+        return false;
+    }
+    else {
+        return true;
+    }
+};
+exports.validateImg = validateImg;

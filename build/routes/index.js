@@ -50,28 +50,35 @@ router.get('/', function (req, res) {
 });
 router.get('/image', function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var img, width, height, _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var img, width, height, err_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
                     img = req.query.img;
                     width = req.query.width;
                     height = req.query.height;
                     if (!(0, fs_1.existsSync)(path_1.default.join(__dirname, '..', 'public', "".concat(img).concat(width).concat(height, ".jpg")))) return [3 /*break*/, 1];
                     res.sendFile("".concat(img).concat(width).concat(height, ".jpg"), { root: path_1.default.join(__dirname, '..', 'public') });
-                    return [3 /*break*/, 4];
+                    return [3 /*break*/, 7];
                 case 1:
-                    _b.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, (0, utilities_1.resize)(req)];
+                    _a.trys.push([1, 6, , 7]);
+                    if (!(0, utilities_1.validateNum)(req)) return [3 /*break*/, 2];
+                    throw new Error('Error! Width or height parameter is not a Number.');
                 case 2:
-                    _b.sent();
+                    if (!(0, utilities_1.validateImg)(req)) return [3 /*break*/, 3];
+                    throw new Error('Error! Image was not found in public directory.');
+                case 3: return [4 /*yield*/, (0, utilities_1.resize)(req)];
+                case 4:
+                    _a.sent();
                     res.sendFile("".concat(img).concat(width).concat(height, ".jpg"), { root: path_1.default.join(__dirname, '..', 'public') });
-                    return [3 /*break*/, 4];
-                case 3:
-                    _a = _b.sent();
+                    _a.label = 5;
+                case 5: return [3 /*break*/, 7];
+                case 6:
+                    err_1 = _a.sent();
+                    console.log(err_1);
                     res.send('Oops! Something went wrong. Please check your URL and try again.');
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 7];
+                case 7: return [2 /*return*/];
             }
         });
     });

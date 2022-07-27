@@ -2,7 +2,6 @@
   "name": "image-processing-api",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "start": "nodemon ./bin/www.ts",
     "test": "jest",
